@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.NovoProduto"
+             Title="Novo Produto"
+             BackgroundColor="#F5F5F5">
+    
+
+   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+   
+    <VerticalStackLayout Spacing="15" Padding="20">
+       
+        <SearchBar x:Name="searchBar"
+                   Placeholder="Buscar Produto"
+                   PlaceholderColor="#999999" 
+                   TextColor="#333333"
+                   BackgroundColor="#FFFFFF"
+                   FontFamily="Open Sans"
+                   FontSize="14"
+                   TextChanged="OnSearchBarTextChanged" />
+
+        
+        <ListView x:Name="produtosListView"
+                  BackgroundColor="#FFFFFF"
+                  ItemsSource="{Binding Produtos}"
+                  SeparatorColor="#E0E0E0"
+                  HasUnevenRows="True">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Padding="10" Spacing="5">
+                            <Label Text="{Binding Descricao}" 
+                                   TextColor="#333333"
+                                   FontFamily="Open Sans"
+                                   FontSize="16" />
+                            <Label Text="{Binding Preco, StringFormat='Preço: {0:C}'}" 
+                                   TextColor="#666666"
+                                   FontFamily="Open Sans"
+                                   FontSize="14" />
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        
+        <Label Text="Descrição do Produto:" 
+               TextColor="#333333"
+               FontFamily="Open Sans"
+               FontSize="16" />
+        <Entry x:Name="txt_descricao" 
+               TextColor="#333333"
+               BackgroundColor="#FFFFFF"
+               FontFamily="Open Sans"
+               FontSize="14"
+               Placeholder="Digite a descrição"
+               PlaceholderColor="#999999"
+               Margin="0, 5, 0, 10" />
+
+        <Label Text="Quantidade:" 
+               TextColor="#333333"
+               FontFamily="Open Sans"
+               FontSize="16" />
+        <Entry x:Name="txt_quantidade" 
+               Keyboard="Numeric" 
+               TextColor="#333333"
+               BackgroundColor="#FFFFFF"
+               FontFamily="Open Sans"
+               FontSize="14"
+               Placeholder="Digite a quantidade"
+               PlaceholderColor="#999999"
+               Margin="0, 5, 0, 10" />
+
+        <Label Text="Preço Unitário:" 
+               TextColor="#333333"
+               FontFamily="Open Sans"
+               FontSize="16" />
+        <Entry x:Name="txt_preco" 
+               Keyboard="Numeric" 
+               TextColor="#333333"
+               BackgroundColor="#FFFFFF"
+               FontFamily="Open Sans"
+               FontSize="14"
+               Placeholder="Digite o preço"
+               PlaceholderColor="#999999"
+               Margin="0, 5, 0, 10" />
+    </VerticalStackLayout>
+</ContentPage>
