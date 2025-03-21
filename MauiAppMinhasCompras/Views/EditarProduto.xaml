@@ -2,11 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.EditarProduto"
-             Title="EditarProduto">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Editar Produto"
+             BackgroundColor="LightBlue">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Clicked="SalvarProduto_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout Padding="10" Spacing="15">
+
+        <Label Text="Descrição do Produto"
+               TextColor="Black" />
+        <Entry x:Name="txtDescricao"
+               TextColor="Black"
+               BackgroundColor="White"
+               Placeholder="Digite a descrição do produto" />
+
+
+        <Label Text="Quantidade"
+               TextColor="Black" />
+        <Entry x:Name="txtQuantidade"
+               Keyboard="Numeric"
+               TextColor="Black"
+               BackgroundColor="White"
+               Placeholder="Digite a quantidade do produto" />
+
+        <Label Text="Preço Unitário"
+               TextColor="Black" />
+        <Entry x:Name="txtPreco"
+               Keyboard="Numeric"
+               TextColor="Black"
+               BackgroundColor="White"
+               Placeholder="Digite o preço do produto" />
+
+        <!-- Botão para Editar Produto -->
+        <Button Text="Editar Produto"
+                BackgroundColor="Orange"
+                TextColor="White"
+                Clicked="EditarProduto_Clicked" />
+
+        <!-- Botão para Salvar Alterações -->
+        <Button Text="Salvar Alterações"
+                BackgroundColor="Blue"
+                TextColor="White"
+                Clicked="SalvarProduto_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

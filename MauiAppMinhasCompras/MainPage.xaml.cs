@@ -20,6 +20,16 @@
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
-    }
 
+
+        private async void AbrirListaProdutos(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.ListaProduto());
+        }
+
+        private async void AbrirNovoProduto(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.NovoProduto());
+        }
+    }
 }

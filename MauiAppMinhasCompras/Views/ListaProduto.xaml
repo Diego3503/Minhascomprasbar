@@ -2,39 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
-             Title="Minhas Compras">
+             Title="Minhas Compras"
+             BackgroundColor="LightSlateGray">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
-    
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Padding="15" Spacing="10">
+        
         <SearchBar x:Name="txt_search" 
-                   Placeholder="Busca de Produtos"
-                   TextChanged="txt_search_TextChanged"/>
-        <ListView x:Name="lst_produtos">
+                   Placeholder="Buscar Produtos"
+                   TextChanged="txt_search_TextChanged" 
+                   BackgroundColor="White"
+                   TextColor="DarkSlateGray"
+                   PlaceholderColor="Gray" />
+
+        
+        <ListView x:Name="lst_produtos" BackgroundColor="White">
             <ListView.Header>
-                <Grid ColumnDefinitions="*, *, *, *, *, *">
-                    <Label Grid.Column="0" Text="ID" />
-                    <Label Grid.Column="1" Text="Descrição" />
-                    <Label Grid.Column="2" Text="Preço" />
-                    <Label Grid.Column="3" Text="Qnt" />
-                    <Label Grid.Column="4" Text="Total" />
+                <Grid ColumnDefinitions="*, *, *, *, *, *" BackgroundColor="SlateGray">
+                    <Label Grid.Column="0" Text="ID" TextColor="White" />
+                    <Label Grid.Column="1" Text="Descrição" TextColor="White" />
+                    <Label Grid.Column="2" Text="Preço" TextColor="White" />
+                    <Label Grid.Column="3" Text="Quantidade" TextColor="White" />
+                    <Label Grid.Column="4" Text="Total" TextColor="White" />
+                    <Label Grid.Column="5" Text="" />
+                   
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <ViewCell.ContextActions>
-                            <MenuItem Text="Remover" Clicked="MenuItem_Clicked" />
-                        </ViewCell.ContextActions>
-                        <Grid ColumnDefinitions="*, *, *, *, *, *">
+                        <Grid ColumnDefinitions="*, *, *, *, *, Auto" Padding="10">
                             <Label Grid.Column="0" Text="{Binding Id}" />
                             <Label Grid.Column="1" Text="{Binding Descricao}" />
-                            <Label Grid.Column="2" Text="{Binding Preco}" />
+                            <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{0:C}'}" />
                             <Label Grid.Column="3" Text="{Binding Quantidade}" />
-                            <Label Grid.Column="4" Text="{Binding Total}" />
+                            <Label Grid.Column="4" Text="{Binding Total, StringFormat='{0:C}'}" />
+
+                           
+                            <ImageButton Grid.Column="5"
+                                         Source="trash_icon.png"
+                                         WidthRequest="24"
+                                         HeightRequest="24"
+                                         BackgroundColor="Transparent"
+                                         CommandParameter="{Binding .}"
+                                         Clicked="RemoverProduto_Clicked" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

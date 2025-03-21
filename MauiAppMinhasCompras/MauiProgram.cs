@@ -11,11 +11,15 @@ namespace MauiAppMinhasCompras
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+
+                    fonts.AddFont("Poppins-Regular.ttf", "Poppins");
+
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSans");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
 #if DEBUG
+
             builder.Logging.AddDebug();
 #endif
 

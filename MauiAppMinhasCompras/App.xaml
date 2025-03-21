@@ -6,7 +6,7 @@
     <Application.Resources>
        
         <Style TargetType="ContentPage">
-            <Setter Property="BackgroundColor" Value="#F5F5F5"/>
+            <Setter Property="BackgroundColor" Value="black"/>
             <Setter Property="Padding" Value="20"/>
         </Style>
 

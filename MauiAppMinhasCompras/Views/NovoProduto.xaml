@@ -2,92 +2,150 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.NovoProduto"
-             Title="Novo Produto"
-             BackgroundColor="#F5F5F5">
-    
+             Title="Novos Produtos"
+             BackgroundColor="#4A4E69">
 
-   
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Salvar"
+                     Clicked="ToolbarItem_Clicked"
+                     IconImageSource="save_icon.png" />
     </ContentPage.ToolbarItems>
 
-   
-    <VerticalStackLayout Spacing="15" Padding="20">
-       
-        <SearchBar x:Name="searchBar"
-                   Placeholder="Buscar Produto"
-                   PlaceholderColor="#999999" 
-                   TextColor="#333333"
-                   BackgroundColor="#FFFFFF"
-                   FontFamily="Open Sans"
-                   FontSize="14"
-                   TextChanged="OnSearchBarTextChanged" />
+    <VerticalStackLayout Spacing="20" Padding="20">
+
+      
+        <Entry x:Name="txt_descricao"
+               Placeholder="Descrição do Produto"
+               PlaceholderColor="black"
+               TextColor="Black"
+               BackgroundColor="White"
+               FontFamily="Poppins"
+               FontSize="14" />
+
+        <Entry x:Name="txt_quantidade"
+               Placeholder="Quantidade"
+               PlaceholderColor="black"
+               TextColor="Black"
+               BackgroundColor="White"
+               FontFamily="Poppins"
+               FontSize="14"
+               Keyboard="Numeric" />
+
+        <Entry x:Name="txt_preco"
+               Placeholder="Preço"
+               PlaceholderColor="black"
+               TextColor="Black"
+               BackgroundColor="White"
+               FontFamily="Poppins"
+               FontSize="14"
+               Keyboard="Numeric" />
 
         
+        <SearchBar x:Name="searchBar"
+                   Placeholder="Buscar Produto"
+                   PlaceholderColor="black"
+                   TextColor="Black"
+                   BackgroundColor="White"
+                   FontFamily="Poppins"
+                   FontSize="14"
+                   Margin="0,0,0,10"
+                   TextChanged="OnSearchBarTextChanged" />
+
         <ListView x:Name="produtosListView"
-                  BackgroundColor="#FFFFFF"
+                  BackgroundColor="White"
                   ItemsSource="{Binding Produtos}"
-                  SeparatorColor="#E0E0E0"
-                  HasUnevenRows="True">
-            
+                  SeparatorColor="Gray"
+                  HasUnevenRows="True"
+                  SelectionMode="Single"
+                  Margin="0,0,0,10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <VerticalStackLayout Padding="10" Spacing="5">
-                            <Label Text="{Binding Descricao}" 
-                                   TextColor="#333333"
-                                   FontFamily="Open Sans"
-                                   FontSize="16" />
-                            <Label Text="{Binding Preco, StringFormat='Preço: {0:C}'}" 
-                                   TextColor="#666666"
-                                   FontFamily="Open Sans"
-                                   FontSize="14" />
-                        </VerticalStackLayout>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+
+                               
+                                <SwipeItem Text="Editar"
+                                           BackgroundColor="black"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnEditarProduto">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource Glyph="✏️"
+                                                         FontFamily="Segoe UI Emoji"
+                                                         Size="20" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+
+                               
+                                <SwipeItem Text="Excluir"
+                                           BackgroundColor="Red"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnExcluirProduto">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource Glyph="🗑️"
+                                                         FontFamily="Segoe UI Emoji"
+                                                         Size="20" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+
+                            </SwipeView.RightItems>
+
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="{Binding Descricao}"
+                                       TextColor="Black"
+                                       FontSize="16"
+                                       FontFamily="Poppins"
+                                       VerticalOptions="Center" />
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding Preco, StringFormat='Preço: {0:C}'}"
+                                       TextColor="Gray"
+                                       FontSize="14"
+                                       FontFamily="Poppins"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="End" />
+                            </Grid>
+                        </SwipeView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         
-        <Label Text="Descrição do Produto:" 
-               TextColor="#333333"
-               FontFamily="Open Sans"
-               FontSize="16" />
-        <Entry x:Name="txt_descricao" 
-               TextColor="#333333"
-               BackgroundColor="#FFFFFF"
-               FontFamily="Open Sans"
-               FontSize="14"
-               Placeholder="Digite a descrição"
-               PlaceholderColor="#999999"
-               Margin="0, 5, 0, 10" />
+        <Button Text="Calcular Total"
+                FontSize="16"
+                BackgroundColor="Green"
+                TextColor="White"
+                Padding="10"
+                CornerRadius="10"
+                Clicked="CalcularTotal"
+                HorizontalOptions="FillAndExpand" />
 
-        <Label Text="Quantidade:" 
-               TextColor="#333333"
-               FontFamily="Open Sans"
-               FontSize="16" />
-        <Entry x:Name="txt_quantidade" 
-               Keyboard="Numeric" 
-               TextColor="#333333"
-               BackgroundColor="#FFFFFF"
-               FontFamily="Open Sans"
-               FontSize="14"
-               Placeholder="Digite a quantidade"
-               PlaceholderColor="#999999"
-               Margin="0, 5, 0, 10" />
+        <Button Text="Apagar Banco de Dados"
+        FontSize="16"
+        BackgroundColor="Red"
+        TextColor="black"
+        Padding="15"
+        CornerRadius="10"
+        Clicked="BtnApagarBanco_Clicked"
+        HorizontalOptions="Fill" />
 
-        <Label Text="Preço Unitário:" 
-               TextColor="#333333"
-               FontFamily="Open Sans"
-               FontSize="16" />
-        <Entry x:Name="txt_preco" 
-               Keyboard="Numeric" 
-               TextColor="#333333"
-               BackgroundColor="#FFFFFF"
-               FontFamily="Open Sans"
-               FontSize="14"
-               Placeholder="Digite o preço"
-               PlaceholderColor="#999999"
-               Margin="0, 5, 0, 10" />
+
+        <Button Text="Ir para Minhas Compras"
+                FontSize="16"
+                BackgroundColor="Blue"
+                TextColor="White"
+                Padding="15"
+                CornerRadius="10"
+                Clicked="IrParaMinhasCompras"
+                HorizontalOptions="Fill" />
+
     </VerticalStackLayout>
 </ContentPage>
