@@ -3,7 +3,6 @@
        xmlns:views="clr-namespace:MauiAppMinhasCompras.Views"
        x:Class="MauiAppMinhasCompras.AppShell">
 
-    <!-- Defina suas páginas de navegação -->
     <ShellContent Title="Novo Produto" ContentTemplate="{DataTemplate views:NovoProduto}" />
     <ShellContent Title="Lista de Produtos" ContentTemplate="{DataTemplate views:ListaProduto}" />
 </Shell>
